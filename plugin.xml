@@ -46,8 +46,6 @@
     </config-file>
     <header-file src="src/ios/BrazePlugin.h" />
     <source-file src="src/ios/BrazePlugin.m" />
-    <header-file src="src/ios/AppDelegate+Braze.h" />
-    <source-file src="src/ios/AppDelegate+Braze.m" />
     <header-file src="src/ios/BrazeIDFADelegate.h" />
     <podspec>
       <config>
