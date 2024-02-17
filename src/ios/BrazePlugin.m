@@ -1,5 +1,4 @@
 #import "BrazePlugin.h"
-#import "AppDelegate+Braze.h"
 
 @import BrazeKit;
 @import BrazeLocation;
@@ -52,10 +51,6 @@ static Braze *_braze;
   self.forwardUniversalLinks = settings[@"com.braze.ios_forward_universal_links"];
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishLaunchingListener:) name:UIApplicationDidFinishLaunchingNotification object:nil];
-
-  if (![self.disableAutomaticPushHandling isEqualToString:@"YES"]) {
-    [AppDelegate swizzleHostAppDelegate];
-  }
 }
 
 - (void)didFinishLaunchingListener:(NSNotification *)notification {
