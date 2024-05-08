@@ -90,6 +90,9 @@ static Braze *_braze;
   // Set the app group identifier for push stories.
   [configuration.push setAppGroup:self.pushAppGroup];
 
+  // Verbose logging
+  [configuration.logger setLevel:BRZLoggerLevelDebug];
+
   self.braze = [[Braze alloc] initWithConfiguration:configuration];
   self.braze.inAppMessagePresenter = [[BrazeInAppMessageUI alloc] init];
   self.subscriptions = [NSMutableArray array];
