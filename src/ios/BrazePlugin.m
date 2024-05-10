@@ -51,6 +51,12 @@ static Braze *_braze;
   self.pushAppGroup = settings[@"com.braze.ios_push_app_group"];
   self.forwardUniversalLinks = settings[@"com.braze.ios_forward_universal_links"];
 
+  // NOTE(Katie): Make push notifications get handled by what's in AppDelegate.swift
+  UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+  if (center.delegate == nil) {
+      center.delegate = [UIApplication sharedApplication].delegate;
+  }
+
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishLaunchingListener:) name:UIApplicationDidFinishLaunchingNotification object:nil];
 
   if (![self.disableAutomaticPushHandling isEqualToString:@"YES"]) {
