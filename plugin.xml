@@ -49,6 +49,20 @@
     <header-file src="src/ios/AppDelegate+Braze.h" />
     <source-file src="src/ios/AppDelegate+Braze.m" />
     <header-file src="src/ios/BrazeIDFADelegate.h" />
+    <!--
+      NOTE(Katie): This plugin uses the SwiftUI framework in an unsafe way for old devices.
+      I'm not sure of all the exact combinations, but I found issues building on Xcode 16 with my iOS 17.6.1 device.
+
+      I found the error and solution here (this is old, but I have seen similar posts about Xcode 16 and other frameworks):
+      https://stackoverflow.com/questions/57907817/dyld-library-not-loaded-swiftui-when-app-runs-on-ios-12-using-availableios-13
+
+      Basically all this does is tell iOS that there is a weak link to the SwiftUI framework so that apps on older iOS's
+      don't crash on startup by trying to access new features from the iOS version we're targeting.
+
+      More details on what weak framework links are here:
+      https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Concepts/WeakLinking.html
+    -->
+    <framework src="SwiftUI.framework" weak="true" />
     <podspec>
       <config>
         <source url="https://cdn.cocoapods.org/"/>
